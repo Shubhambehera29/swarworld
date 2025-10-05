@@ -1,0 +1,365 @@
+/* ==========================
+   VARIABLES
+========================== */
+:root {
+  --bg-light: #f9f9fb;
+  --bg-dark: #121212;
+  --text-light: #fff;
+  --text-dark: #131313;
+  --card-bg-light: #fff;
+  --card-bg-dark: #1e1e1e;
+  --card-text-light: #fff;
+  --card-text-dark: #333;
+  --accent: #e63946;
+  --primary: #007bff;
+  --primary-dark: #0056b3;
+  --success: #28a745;
+  --success-dark: #218838;
+}
+
+/* ==========================
+   GLOBAL
+========================== */
+* { box-sizing: border-box; margin:0; padding:0; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  transition: background 0.4s, color 0.4s;
+}
+
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* ==========================
+   HEADER
+========================== */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: #171717;
+  color: #fff;
+  gap: 10px;
+}
+
+header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+header nav a:hover { color: var(--accent); background-color: transparent; }
+
+header input[type="text"] {
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  max-width: 100%;
+}
+
+.toggle-dark {
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: #444;
+  color: #fff;
+  user-select: none;
+  transition: background 0.3s;
+}
+
+.toggle-dark:hover { background: var(--accent); }
+
+@media (max-width: 768px){
+  header { flex-direction: column; align-items: flex-start; }
+  header nav { width: 100%; justify-content: flex-start; }
+  #searchInput { width: 100%; margin-top: 8px; }
+}
+
+/* ==========================
+   CARDS
+========================== */
+.container {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: var(--card-bg-light);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.4s, color 0.4s, box-shadow 0.3s;
+  color: var(--card-text-dark);
+  display: flex;
+  flex-direction: column;
+}
+
+body.dark .card {
+  background: var(--card-bg-dark);
+  color: var(--card-text-light);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h3 {
+  margin: 5px 0 10px;
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+.card-content p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+/* ==========================
+   MODAL
+========================== */
+.modal {
+  display: none;
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--card-bg-light);
+  color: var(--card-text-dark);
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 650px;
+  width: 100%;
+  overflow-y: auto;
+  max-height: 90vh;
+  position: relative;
+}
+
+body.dark .modal-content {
+  background: var(--card-bg-dark);
+  color: var(--card-text-light);
+}
+
+.modal-content img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
+.modal-content h2 { margin: 10px 0; font-size: 1.6rem; color: var(--accent); }
+.modal-content p { margin: 5px 0; line-height: 1.5; }
+
+.close {
+  position: absolute;
+  top: 15px; right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--accent);
+}
+
+.purchase {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 18px;
+  background: var(--success);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.purchase:hover { background: var(--success-dark); }
+
+/* ==========================
+   BACK TO TOP
+========================== */
+#backToTop {
+  position: fixed;
+  bottom: 40px; right: 40px;
+  display: none;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 1000;
+}
+
+/* ==========================
+   CONTACT SECTION
+========================== */
+.contact-section {
+  padding: 60px 20px;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  text-align: center;
+  transition: background 0.4s, color 0.4s;
+}
+
+body.dark .contact-section {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+.contact-section h2 { font-size: 2.5rem; margin-bottom: 10px; }
+.contact-section p { margin-bottom: 30px; font-size: 1rem; color: inherit; }
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: var(--card-bg-light);
+  color: var(--card-text-dark);
+  border: 1px solid #ccc;
+  transition: background 0.4s, color 0.4s, border 0.4s;
+}
+
+body.dark .contact-form input,
+body.dark .contact-form textarea {
+  background-color: var(--card-bg-dark);
+  color: var(--card-text-light);
+  border: 1px solid #555;
+}
+
+.contact-form button {
+  padding: 12px 30px;
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.contact-form button:hover { background-color: var(--primary-dark); }
+
+.contact-info p { margin: 5px 0; }
+
+/* ==========================
+   SEARCH & BUTTONS
+========================== */
+#searchInput {
+  width: 300px;
+  max-width: 100%;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  transition: width 0.3s;
+}
+
+.btn-instrument {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.btn-instrument:hover {
+  background-color: #45a049;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-instrument:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+body.dark .btn-instrument {
+  background-color: #2e7d32;
+}
+
+body.dark .btn-instrument:hover {
+  background-color: #1b5e20;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+footer {
+  background: #171717;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+  font-size: 0.9rem;
+}
+
+nav a {
+  color: #333;
+  text-decoration: none;
+  padding: 8px 12px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background-color: #eee; /* same hover as others */
+  color: #000;
+}

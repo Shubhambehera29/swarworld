@@ -1,0 +1,166 @@
+/* =========================
+ BLOG & EXPERIENCES THEME
+========================= */
+
+/* Light Theme */
+body.light {
+  --bg: #fdfdfd;
+  --text-color: #222;
+  --card-bg: #fff;
+  --accent: #0077cc;
+}
+
+/* Dark Theme */
+body.dark {
+  --bg: #121212;
+  --text-color: #eaeaea;
+  --card-bg: #1e1e1e;
+  --accent: #66c2ff;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-color);
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: var(--card-bg);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+header nav {
+  display: flex;
+  gap: 15px;
+}
+
+header nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+header nav a:hover,
+header nav a.active {
+  color: var(--accent);
+}
+
+/* Dark Toggle Button */
+.toggle-dark {
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-left: 15px;
+}
+
+/* Blog Heading */
+main h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+main p.lead {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Blog Cards */
+.card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.card img {
+  height: 220px;
+  object-fit: cover;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.card .btn {
+  border-radius: 20px;
+  font-size: 0.9rem;
+  padding: 6px 16px;
+}
+
+/* Share Experience Form */
+section h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--accent);
+}
+
+form .form-control {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  background: var(--card-bg);
+  color: var(--text-color);
+}
+
+form .form-control:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+form button {
+  border-radius: 25px;
+  font-size: 1rem;
+  padding: 8px 20px;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  opacity: 0.9;
+}
+
+/* Footer */
+footer {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  padding: 15px 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  text-align: center;
+}

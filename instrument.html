@@ -1,0 +1,221 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swar World</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+ <link rel="stylesheet" href="./instrustyle.css">
+<!-- Sidebar Styles for Dark Mode -->
+<style>
+.profile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -350px;
+  width: 350px;
+  height: 100%;
+  background: #1e1e2f; /* dark background */
+  color: #fff;          /* text color white */
+  box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+  transition: right 0.3s;
+  z-index: 1050;
+  overflow-y: auto;
+}
+
+.profile-sidebar.active {
+  right: 0;
+}
+
+.profile-sidebar input,
+.profile-sidebar select,
+.profile-sidebar textarea {
+  background: #2c2c3d;  /* dark input background */
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.profile-sidebar input::placeholder,
+.profile-sidebar textarea::placeholder {
+  color: #bbb;
+}
+
+.profile-sidebar .form-check-label {
+  color: #fff;
+}
+
+.profile-sidebar .sidebar-header {
+  border-bottom: 1px solid #444;
+}
+
+.profile-sidebar button.btn-primary {
+  background-color: #4e4ed1;
+  border-color: #4e4ed1;
+}
+
+.profile-sidebar button.btn-danger {
+  background-color: #d14e4e;
+  border-color: #d14e4e;
+}
+
+.profile-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.profile-sidebar::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 3px;
+}
+
+.profile-sidebar img {
+  border: 2px solid #555;
+}
+</style>
+
+
+</head>
+<body>
+<header class="bg-dark text-white py-2 px-3 d-flex align-items-center justify-content-between">
+  <div class="d-flex align-items-center">
+    <div class="logo fs-4 fw-bold me-4">SwarWorld</div>
+    <nav class="d-none d-md-flex gap-3 align-items-center">
+      <a href="./index.html" class="text-white text-decoration-none">Home</a>
+      <a href="./about.html" class="text-white text-decoration-none">About</a>
+      <a href="#contact" class="text-white text-decoration-none">Contact</a>
+      <a href="./blog.html" class="text-white text-decoration-none">Blog & Experiences</a>
+      <a href="#" id="viewBookmarks" class="text-white text-decoration-none" style="background-color: transparent;">View Bookmarks</a>
+    </nav>
+    <div class="ms-3 d-flex align-items-center">
+      <input type="text" placeholder="Search by Instrument or Country" id="searchInput" class="form-control form-control-sm">
+      <span class="toggle-dark ms-2" id="darkToggle" style="cursor:pointer;">🌙</span>
+    </div>
+  </div>
+
+  <!-- Profile Icon -->
+  <div>
+    <img src="./user-avatar.jpg" id="profileBtn" alt="User Avatar" width="35" height="35" class="rounded-circle" style="cursor:pointer;">
+  </div>
+</header>
+
+
+<!-- Sidebar -->
+<div id="profileSidebar" class="profile-sidebar">
+  <div class="sidebar-header d-flex justify-content-between align-items-center p-3 border-bottom">
+    <h5>Profile Settings</h5>
+    <span id="closeSidebar" style="cursor:pointer;">&times;</span>
+  </div>
+  <div class="sidebar-body p-3">
+    <div class="text-center mb-3">
+      <img src="" id="sidebarAvatar" alt="Avatar" class="rounded-circle mb-2" width="80" height="80">
+      <input type="file" id="changeAvatar" class="form-control form-control-sm">
+    </div>
+
+    <div class="mb-2">
+      <label for="displayName" class="form-label">Display Name</label>
+      <input type="text" id="displayName" class="form-control" value="Shubham">
+    </div>
+
+    <div class="mb-2">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" class="form-control" value="shubham@example.com">
+    </div>
+
+    <div class="mb-2">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" id="password" class="form-control" placeholder="New Password">
+    </div>
+
+    <div class="mb-2 form-check">
+      <input type="checkbox" class="form-check-input" id="showEmail">
+      <label class="form-check-label" for="showEmail">Show email publicly</label>
+    </div>
+
+    <div class="mb-2 form-check">
+      <input type="checkbox" class="form-check-input" id="notify">
+      <label class="form-check-label" for="notify">Enable notifications</label>
+    </div>
+
+    <button class="btn btn-primary w-100 mb-2" id="saveProfile">Save Changes</button>
+    <button class="btn btn-danger w-100" onclick="logout()">Logout</button>
+  </div>
+</div>
+
+  <div class="container" id="cardContainer"></div>
+
+<section id="contact" class="contact-section py-5">
+  <div class="container">
+    <h2 class="mb-3">Contact Us</h2>
+    <p class="mb-4">Have questions or want to collaborate? Reach out to us!</p>
+    <form action="#" method="POST" class="contact-form mx-auto">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required>
+      </div>
+      <div class="mb-3">
+        <label for="message" class="form-label">Message</label>
+        <textarea id="message" name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+    <div class="contact-info mt-4">
+      <p>Email: <a href="mailto:info@example.com">swarWorld@example.com</a></p>
+      <p>Phone: <a href="tel:+911234567890">+91 12345 67890</a></p>
+      <p>Address: 123 Your Street, City, India</p>
+    </div>
+  </div>
+</section>
+
+
+  <footer>
+    <p>&copy; 2025 SwarWorld. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-content">
+      <span class="close" id="closeBtn">&times;</span>
+      <img id="modalImg" src="" alt="">
+      <h2 id="modalName"></h2>
+      <p><strong>Origin:</strong> <span id="modalOrigin"></span></p>
+      <p><strong>Manufacturer:</strong> <span id="modalManufacturer"></span></p>
+      <p><strong>Price 1:</strong> <span id="modalExtra1"></span></p>
+      <p><strong>Price 2:</strong> <span id="modalExtra2"></span></p>
+      <p id="modalDesc"></p>
+      <a href="#" id="purchaseLink" class="purchase" target="_blank">Buy Now</a>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop"> ^ </button>
+
+  <script>
+const profileBtn = document.getElementById('profileBtn');
+const profileSidebar = document.getElementById('profileSidebar');
+const closeSidebar = document.getElementById('closeSidebar');
+
+profileBtn.addEventListener('click', () => profileSidebar.classList.add('active'));
+closeSidebar.addEventListener('click', () => profileSidebar.classList.remove('active'));
+
+// Save profile example
+document.getElementById('saveProfile').addEventListener('click', () => {
+  const name = document.getElementById('displayName').value;
+  const email = document.getElementById('email').value;
+  alert(`Saved! \nName: ${name} \nEmail: ${email}`);
+});
+</script>
+
+<script>
+function logout(){
+  localStorage.setItem("loggedIn", "false");
+  window.location.href = "index.html";  // go to home instead of login
+}
+</script>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./instruscript.js"></script>
+</body>
+</html>
