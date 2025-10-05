@@ -79,3 +79,14 @@ app.post('/login', (req,res)=>{
 // ✅ Correct app.listen for Render
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+const path = require('path');
+
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve index.html on root
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
