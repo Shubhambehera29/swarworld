@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'shubhambehera29@gmail.com',        // your Gmail
-    pass: 'rnfv tedt qhgs qwde'           // generated app password, not regular Gmail password
+    pass: 'rnfvtedtqhgsqwde'                 // generated app password, not regular Gmail password
   }
 });
 
@@ -76,14 +76,6 @@ app.post('/login', (req,res)=>{
   }
 });
 
-app.listen(3000, ()=>console.log("Server running on port 3000"));
-
-
-
-
-
-
-
-
-
-
+// ✅ Correct app.listen for Render
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
